@@ -5,10 +5,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Task from './src/pages/Task';
 import NewTask from './src/pages/NewTask';
 import Details from './src/pages/Details';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+
 
 
 const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
 
+function Tabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Inicio" component={Task} />
+      <Tab.Screen name="Nova Task" component={NewTask} />
+    </Tab.Navigator>
+  )
+}
 
 
 export default function App() {
@@ -17,20 +29,42 @@ export default function App() {
       <Stack.Navigator initialRouteName="Task" >
         <Stack.Screen
           name="Tasks"
-          component={Task}
-          options={{ headerTintColor: "#f92e6a" }}
+          component={Tabs}
+          options={{
+            title: 'Lista de Tarefas',
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#000"
+            }
+          }}
+
         />
 
         <Stack.Screen
           name="New Task"
           component={NewTask}
-          options={{ headerTintColor: "#f92e6a" }}
+          options={{
+            title: 'Nova Tarefa',
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#000"
+            }
+          }}
         />
 
         <Stack.Screen
           name="Details"
           component={Details}
-          options={{ headerTintColor: "#f92e6a" }}
+          options={{
+            title: 'Detalhes',
+            headerTintColor: "#fff",
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#000"
+            }
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
